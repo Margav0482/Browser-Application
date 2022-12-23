@@ -89,6 +89,7 @@
             this.Controls.Add(this.linkLabel);
             this.Controls.Add(this.linkTextBox);
             this.Name = "AddBookmarkWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Bookmark";
             this.Load += new System.EventHandler(this.AddBookmarkWindow_Load);
             this.ResumeLayout(false);

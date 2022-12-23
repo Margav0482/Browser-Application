@@ -33,6 +33,7 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.clearButton = new System.Windows.Forms.Button();
             this.mainWindowBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainWindowBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -85,6 +86,16 @@
             this.dataGridView.TabIndex = 5;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(371, 109);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
+            this.clearButton.TabIndex = 6;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
             // mainWindowBindingSource
             // 
             this.mainWindowBindingSource.DataSource = typeof(BrowserApplication.MainWindow);
@@ -106,11 +117,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 417);
+            this.Controls.Add(this.clearButton);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
             this.Name = "BookmarkWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Bookmarks";
             this.Load += new System.EventHandler(this.FavouritesWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -131,5 +144,6 @@
         private System.Windows.Forms.BindingSource programBindingSource;
         private System.Windows.Forms.BindingSource mainWindowBindingSource1;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button clearButton;
     }
 }

@@ -124,5 +124,10 @@ namespace BrowserApplication.Forms
         {
 
         }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.BookmarksList.Clear();
+        }
     }
 }

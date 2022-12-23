@@ -88,6 +88,7 @@
             this.Controls.Add(this.linkLabel);
             this.Controls.Add(this.linkTextBox);
             this.Name = "RemoveBookmarkWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Remove Bookmark";
             this.ResumeLayout(false);
             this.PerformLayout();

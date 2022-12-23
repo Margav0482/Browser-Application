@@ -19,13 +19,11 @@ namespace BrowserApplication
         
         public MainWindow()
         {
-            Properties.Settings.Default.BookmarksList.Clear();
+            //Properties.Settings.Default.BookmarksList.Clear(); //Dev Purpose
             InitializeComponent();
             statusLabel.ResetText();
             webBrowser1.Visible = false;
-            favouritesToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(dropDown_Click);
-        
-        
+            favouritesToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(dropDown_Click);           
         }
 
         public async void getHttpRequest()
