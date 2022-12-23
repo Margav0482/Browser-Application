@@ -24,6 +24,8 @@ namespace BrowserApplication
             statusLabel.ResetText();
             webBrowser1.Visible = false;
             favouritesToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(dropDown_Click);
+        
+        
         }
 
         public async void getHttpRequest()
@@ -137,13 +139,16 @@ namespace BrowserApplication
             if(inputUrlBox.Text != "")
             {
                 var item = inputUrlBox.Text.ToString();
-                ToolStripSeparator toolStripSeparator = new ToolStripSeparator();
+                
                 if(!favouritesToolStripMenuItem.DropDownItems.Cast<ToolStripMenuItem>().Any(x => x.Text == item))
                 {
                     try {
                         Properties.Settings.Default.BookmarksList.Add(item + ",null");
                         Properties.Settings.Default.Save();
-                        favouritesToolStripMenuItem.DropDownItems.Add(item);
+                        foreach (var bookmark in Properties.Settings.Default.BookmarksList) {
+                            var link = bookmark.Split(',')[0].ToString();
+                            favouritesToolStripMenuItem.DropDownItems.Add(link);
+                        }
                     }
                     catch (Exception ex)
                     { 
@@ -195,6 +200,10 @@ namespace BrowserApplication
         private void homePageURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void favouritesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }

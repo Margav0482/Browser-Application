@@ -48,10 +48,6 @@ namespace BrowserApplication.Forms.BookmarkFunctions
                 Properties.Settings.Default.BookmarksList.Add(linkinput + "," + nameinput);
                 Properties.Settings.Default.Save();
 
-                MainWindow mw = new MainWindow();
-                
-                //MessageBox.Show();
-
                 this.Close();
                 MessageBox.Show("Added!");
             }

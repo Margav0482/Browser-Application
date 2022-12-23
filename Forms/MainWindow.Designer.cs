@@ -152,6 +152,7 @@
             this.favouritesToolStripMenuItem.Name = "favouritesToolStripMenuItem";
             this.favouritesToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.favouritesToolStripMenuItem.Text = "Favourites";
+            this.favouritesToolStripMenuItem.Click += new System.EventHandler(this.favouritesToolStripMenuItem_Click);
             // 
             // webBrowser1
             // 
@@ -164,7 +165,7 @@
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(74, 64);
+            this.statusLabel.Location = new System.Drawing.Point(86, 64);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(35, 13);
             this.statusLabel.TabIndex = 12;
