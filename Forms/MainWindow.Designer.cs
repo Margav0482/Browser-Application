@@ -43,11 +43,10 @@
             this.bulkDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.favButton = new System.Windows.Forms.Button();
-            this.homeButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.outputDebug = new System.Windows.Forms.Label();
+            this.favButton = new System.Windows.Forms.Button();
+            this.homeButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,6 +161,20 @@
             this.webBrowser1.Size = new System.Drawing.Size(665, 518);
             this.webBrowser1.TabIndex = 10;
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(74, 64);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(35, 13);
+            this.statusLabel.TabIndex = 12;
+            this.statusLabel.Text = "label1";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // favButton
             // 
             this.favButton.BackColor = System.Drawing.SystemColors.Control;
@@ -188,35 +201,11 @@
             this.homeButton.UseVisualStyleBackColor = false;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 
-            // statusLabel
-            // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(74, 64);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(35, 13);
-            this.statusLabel.TabIndex = 12;
-            this.statusLabel.Text = "label1";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // outputDebug
-            // 
-            this.outputDebug.AutoSize = true;
-            this.outputDebug.Location = new System.Drawing.Point(340, 64);
-            this.outputDebug.Name = "outputDebug";
-            this.outputDebug.Size = new System.Drawing.Size(35, 13);
-            this.outputDebug.TabIndex = 13;
-            this.outputDebug.Text = "label1";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 618);
-            this.Controls.Add(this.outputDebug);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.favButton);
             this.Controls.Add(this.webBrowser1);
@@ -254,7 +243,6 @@
         private System.Windows.Forms.ToolStripMenuItem updateFavouritesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Label outputDebug;
         private System.Windows.Forms.ToolStripMenuItem favouritesToolStripMenuItem;
     }
 }
