@@ -167,9 +167,9 @@
             this.statusLabel.AutoSize = true;
             this.statusLabel.Location = new System.Drawing.Point(86, 64);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(35, 13);
+            this.statusLabel.Size = new System.Drawing.Size(83, 13);
             this.statusLabel.TabIndex = 12;
-            this.statusLabel.Text = "label1";
+            this.statusLabel.Text = "STATUS CODE";
             // 
             // contextMenuStrip1
             // 

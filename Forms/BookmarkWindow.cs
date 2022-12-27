@@ -16,7 +16,6 @@ namespace BrowserApplication.Forms
             this.StartPosition = FormStartPosition.CenterParent;
             dataGridView.CellEndEdit += new DataGridViewCellEventHandler(editDetector);
         }
-
         private void editDetector(object sender, DataGridViewCellEventArgs e)
         {
             var rowindex = e.RowIndex;
@@ -33,6 +32,7 @@ namespace BrowserApplication.Forms
                 Properties.Settings.Default.Save();
             }
         }
+
 
         public void ClearData() {
             dataGridView.Rows.Clear();
@@ -87,6 +87,7 @@ namespace BrowserApplication.Forms
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         private void addButton_Click(object sender, EventArgs e)
         {

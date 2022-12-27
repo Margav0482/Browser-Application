@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using BrowserApplication.Forms;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace BrowserApplication
 {
@@ -16,7 +17,12 @@ namespace BrowserApplication
         public string googlequery = "http://";
         public HttpClient client = new HttpClient();
         public WebClient webClient = new WebClient();
-        
+
+        public void updatebookmarkstab(string item)
+        {
+            favouritesToolStripMenuItem.DropDownItems.Add(item);
+
+        }
         public MainWindow()
         {
             //Properties.Settings.Default.BookmarksList.Clear(); //Dev Purpose
@@ -163,7 +169,7 @@ namespace BrowserApplication
         private void updateFavouritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookmarkWindow form = new BookmarkWindow();
-            form.ShowDialog(this);
+            form.Show();            
         }
 
         private async void homeButton_Click(object sender, EventArgs e)
@@ -197,7 +203,7 @@ namespace BrowserApplication
 
         private void homePageURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void favouritesToolStripMenuItem_Click(object sender, EventArgs e)

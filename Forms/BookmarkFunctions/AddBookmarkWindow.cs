@@ -13,12 +13,14 @@ using System.Xml.Linq;
 
 namespace BrowserApplication.Forms.BookmarkFunctions
 {
+    
     public partial class AddBookmarkWindow : Form
     {
         public string linkinput;
         public string nameinput;
         BookmarkWindow bookmarkform = new BookmarkWindow();
 
+        public MainWindow mw;
 
         public AddBookmarkWindow()
         {
@@ -48,6 +50,9 @@ namespace BrowserApplication.Forms.BookmarkFunctions
                 Properties.Settings.Default.BookmarksList.Add(linkinput + "," + nameinput);
                 Properties.Settings.Default.Save();
 
+
+                var instance = Application.OpenForms.OfType<MainWindow>().Single();
+                instance.updatebookmarkstab(linkinput);
                 this.Close();
                 MessageBox.Show("Added!");
             }
