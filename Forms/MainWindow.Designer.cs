@@ -47,6 +47,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.favButton = new System.Windows.Forms.Button();
             this.homeButton = new System.Windows.Forms.Button();
+            this.changeHomePageURLTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +102,7 @@
             // renderTabToolStripMenuItem
             // 
             this.renderTabToolStripMenuItem.Name = "renderTabToolStripMenuItem";
-            this.renderTabToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.renderTabToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.renderTabToolStripMenuItem.Text = "Render";
             this.renderTabToolStripMenuItem.Click += new System.EventHandler(this.renderTabToolStripMenuItem_Click);
             // 
@@ -116,6 +117,7 @@
             this.miscToolStripMenuItem.Name = "miscToolStripMenuItem";
             this.miscToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.miscToolStripMenuItem.Text = "Misc";
+            this.miscToolStripMenuItem.Click += new System.EventHandler(this.miscToolStripMenuItem_Click);
             // 
             // updateFavouritesToolStripMenuItem
             // 
@@ -131,6 +133,8 @@
             // 
             // homePageURLToolStripMenuItem
             // 
+            this.homePageURLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeHomePageURLTextBox});
             this.homePageURLToolStripMenuItem.Name = "homePageURLToolStripMenuItem";
             this.homePageURLToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.homePageURLToolStripMenuItem.Text = "Change Home Page URL";
@@ -202,6 +206,13 @@
             this.homeButton.UseVisualStyleBackColor = false;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 
+            // changeHomePageURLTextBox
+            // 
+            this.changeHomePageURLTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.changeHomePageURLTextBox.Name = "changeHomePageURLTextBox";
+            this.changeHomePageURLTextBox.Size = new System.Drawing.Size(150, 23);
+            this.changeHomePageURLTextBox.Click += new System.EventHandler(this.changeHomePageURLTextBox_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +257,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem favouritesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox changeHomePageURLTextBox;
     }
 }
 

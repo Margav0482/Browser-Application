@@ -29,7 +29,15 @@ namespace BrowserApplication
             InitializeComponent();
             statusLabel.ResetText();
             webBrowser1.Visible = false;
-            favouritesToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(dropDown_Click);           
+            favouritesToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(dropDown_Click);
+            changeHomePageURLTextBox.TextChanged += ChangeHomePageURLTextBox_TextChanged;
+        }
+
+        private void ChangeHomePageURLTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var msg = changeHomePageURLTextBox.Text;
+            Properties.Settings.Default.HomePageURL = msg;
+            Properties.Settings.Default.Save();
         }
 
         public async void getHttpRequest()
@@ -79,6 +87,7 @@ namespace BrowserApplication
                     favouritesToolStripMenuItem.DropDownItems.Add(linkname);
                 }
             }
+            changeHomePageURLTextBox.Text = Properties.Settings.Default.HomePageURL;
         }
 
 
@@ -169,7 +178,7 @@ namespace BrowserApplication
         private void updateFavouritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookmarkWindow form = new BookmarkWindow();
-            form.Show();            
+            form.ShowDialog();            
         }
 
         private async void homeButton_Click(object sender, EventArgs e)
@@ -208,6 +217,16 @@ namespace BrowserApplication
 
         private void favouritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        }
+
+        private void miscToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changeHomePageURLTextBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
