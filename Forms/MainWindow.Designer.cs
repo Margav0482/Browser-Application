@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.inputUrlBox = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.contentBox = new System.Windows.Forms.RichTextBox();
             this.getButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,7 @@
             this.updateFavouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.homePageURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeHomePageURLTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bulkDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.favButton = new System.Windows.Forms.Button();
             this.homeButton = new System.Windows.Forms.Button();
-            this.changeHomePageURLTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.openbulkFile = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,13 +61,13 @@
             this.inputUrlBox.TextChanged += new System.EventHandler(this.inputUrlBox_TextChanged);
             this.inputUrlBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
-            // richTextBox1
+            // contentBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 88);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(665, 518);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.contentBox.Location = new System.Drawing.Point(12, 98);
+            this.contentBox.Name = "contentBox";
+            this.contentBox.Size = new System.Drawing.Size(665, 518);
+            this.contentBox.TabIndex = 5;
+            this.contentBox.Text = "";
             // 
             // getButton
             // 
@@ -102,7 +103,7 @@
             // renderTabToolStripMenuItem
             // 
             this.renderTabToolStripMenuItem.Name = "renderTabToolStripMenuItem";
-            this.renderTabToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renderTabToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.renderTabToolStripMenuItem.Text = "Render";
             this.renderTabToolStripMenuItem.Click += new System.EventHandler(this.renderTabToolStripMenuItem_Click);
             // 
@@ -140,6 +141,13 @@
             this.homePageURLToolStripMenuItem.Text = "Change Home Page URL";
             this.homePageURLToolStripMenuItem.Click += new System.EventHandler(this.homePageURLToolStripMenuItem_Click);
             // 
+            // changeHomePageURLTextBox
+            // 
+            this.changeHomePageURLTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.changeHomePageURLTextBox.Name = "changeHomePageURLTextBox";
+            this.changeHomePageURLTextBox.Size = new System.Drawing.Size(150, 23);
+            this.changeHomePageURLTextBox.Click += new System.EventHandler(this.changeHomePageURLTextBox_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -150,6 +158,7 @@
             this.bulkDownloadToolStripMenuItem.Name = "bulkDownloadToolStripMenuItem";
             this.bulkDownloadToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.bulkDownloadToolStripMenuItem.Text = "Bulk Download";
+            this.bulkDownloadToolStripMenuItem.Click += new System.EventHandler(this.bulkDownloadToolStripMenuItem_Click);
             // 
             // favouritesToolStripMenuItem
             // 
@@ -160,7 +169,7 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(12, 88);
+            this.webBrowser1.Location = new System.Drawing.Point(12, 98);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(665, 518);
@@ -206,12 +215,9 @@
             this.homeButton.UseVisualStyleBackColor = false;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 
-            // changeHomePageURLTextBox
+            // openbulkFile
             // 
-            this.changeHomePageURLTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.changeHomePageURLTextBox.Name = "changeHomePageURLTextBox";
-            this.changeHomePageURLTextBox.Size = new System.Drawing.Size(150, 23);
-            this.changeHomePageURLTextBox.Click += new System.EventHandler(this.changeHomePageURLTextBox_Click);
+            this.openbulkFile.FileName = "openFileDialog1";
             // 
             // MainWindow
             // 
@@ -222,7 +228,7 @@
             this.Controls.Add(this.favButton);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.getButton);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.contentBox);
             this.Controls.Add(this.homeButton);
             this.Controls.Add(this.inputUrlBox);
             this.Controls.Add(this.menuStrip1);
@@ -241,7 +247,7 @@
         #endregion
         private System.Windows.Forms.TextBox inputUrlBox;
         private System.Windows.Forms.Button homeButton;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox contentBox;
         private System.Windows.Forms.Button getButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
@@ -258,6 +264,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem favouritesToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox changeHomePageURLTextBox;
+        private System.Windows.Forms.OpenFileDialog openbulkFile;
     }
 }
 

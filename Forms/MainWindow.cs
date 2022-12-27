@@ -8,6 +8,9 @@ using System.Linq;
 using BrowserApplication.Forms;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using CefSharp.DevTools.Database;
+using CefSharp.DevTools.Network;
 
 namespace BrowserApplication
 {
@@ -42,21 +45,32 @@ namespace BrowserApplication
 
         public async void getHttpRequest()
         {
-            richTextBox1.Visible = true;
+            contentBox.Visible = true;
             webBrowser1.Visible = false;
-            url = inputUrlBox.Text.ToString().ToLower();
-            Uri myuri = new Uri(googlequery + inputUrlBox.Text.ToLower());
-            statusLabel.ResetText();
+            url = inputUrlBox.Text.ToLower();
+            //MessageBox.Show((new Uri(url).Scheme == Uri.UriSchemeHttp).ToString());
 
             try
             {
-                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(myuri);
-                HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+            Uri myuri;
+            if (Uri.IsWellFormedUriString(url, UriKind.Absolute) && (new Uri(url).Scheme == Uri.UriSchemeHttp))
+            {
+                myuri = new Uri(inputUrlBox.Text.ToLower());
+            }
+            else
+            {
+                myuri = new Uri("http://" + inputUrlBox.Text.ToLower());
+            }
+
+            statusLabel.ResetText();
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(myuri);
+            HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+
                 //GET REQUEST:
                 if (response.StatusCode.ToString() == "OK")
                 {
                     var res = await client.GetStringAsync(myuri.ToString());
-                    richTextBox1.Text = res;
+                    contentBox.Text = res;
 
                     //STATUS CODE
                     statusLabel.Text += "STATUS: " + ((int)response.StatusCode).ToString();
@@ -64,7 +78,8 @@ namespace BrowserApplication
             }
             catch (Exception ex)
             {
-                richTextBox1.Text = ex.Message;
+                contentBox.Text = ex.Message;
+                statusLabel.Text += "STATUS: 404";
             }
         }
 
@@ -112,7 +127,7 @@ namespace BrowserApplication
             if (inputUrlBox.Text != "" && !webClient.IsBusy)
             {
                 webBrowser1.Visible = true;
-                richTextBox1.Visible = false;
+                contentBox.Visible = false;
                 try
                 {
                     Uri myuri = new Uri(googlequery + inputUrlBox.Text.ToLower());
@@ -124,8 +139,8 @@ namespace BrowserApplication
                 catch (Exception ex)
                 {
                     webBrowser1.Visible = false;
-                    richTextBox1.Visible = true;
-                    richTextBox1.Text = ex.Message;
+                    contentBox.Visible = true;
+                    contentBox.Text = ex.Message;
                 }
             }
         }
@@ -183,7 +198,7 @@ namespace BrowserApplication
 
         private async void homeButton_Click(object sender, EventArgs e)
         {
-            richTextBox1.Visible = true;
+            contentBox.Visible = true;
             webBrowser1.Visible = false;
             url = Properties.Settings.Default.HomePageURL;
             inputUrlBox.Text = url;
@@ -198,7 +213,7 @@ namespace BrowserApplication
                 if (response.StatusCode.ToString() == "OK")
                 {
                     var res = await client.GetStringAsync(myuri.ToString());
-                    richTextBox1.Text = res;
+                    contentBox.Text = res;
 
                     //STATUS CODE
                     statusLabel.Text += "STATUS: " + ((int)response.StatusCode).ToString();
@@ -206,7 +221,7 @@ namespace BrowserApplication
             }
             catch (Exception ex)
             {
-                richTextBox1.Text = ex.Message;
+                contentBox.Text = ex.Message;
             }
         }
 
@@ -227,6 +242,59 @@ namespace BrowserApplication
         private void changeHomePageURLTextBox_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private async void bulkDownloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = openbulkFile.ShowDialog();
+            openbulkFile.Title = "Bulk.txt";
+            openbulkFile.Filter = "TXT files|*.txt";
+            if (dr == DialogResult.OK)
+            {
+                List<string> finalres = new List<string>();
+                string fileName = openbulkFile.FileName;
+                try
+                {
+                    string statuscode;
+                    string bytes;
+                    string url;
+                    string code;
+                    var lines = File.ReadLines(fileName);
+                   
+                    foreach (var line in lines)
+                    {
+                        url = line;
+                        Uri uriResult;
+                        bool isUri = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+                            && uriResult.Scheme == Uri.UriSchemeHttp;
+                        if (isUri)
+                        {
+                            Uri myuri = new Uri(url.ToString());
+                            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(myuri);
+                            HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+                            statuscode = ((int)response.StatusCode).ToString();
+
+                            bytes = await client.GetStringAsync(myuri.ToString());
+
+                            code = statuscode + " [" + bytes + "] " + url;
+
+                            finalres.Add(code);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please provide header in file i.e 'http://'");
+                        }
+                        
+                    }
+                    String[] str = finalres.ToArray();
+                    contentBox.Text = String.Join("\n", finalres);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
