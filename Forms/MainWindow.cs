@@ -75,11 +75,14 @@ namespace BrowserApplication
                     //STATUS CODE
                     statusLabel.Text += "STATUS: " + ((int)response.StatusCode).ToString();
                 }
+
+                this.Text = myuri.ToString();   
             }
             catch (Exception ex)
             {
                 contentBox.Text = ex.Message;
                 statusLabel.Text += "STATUS: 404";
+                this.Text = url.ToString();
             }
         }
 
@@ -237,10 +240,12 @@ namespace BrowserApplication
                     //STATUS CODE
                     statusLabel.Text += "STATUS: " + ((int)response.StatusCode).ToString();
                 }
+                this.Text = myuri.ToString();
             }
             catch (Exception ex)
             {
                 contentBox.Text = ex.Message;
+                this.Text = myuri.ToString();
             }
         }
 
