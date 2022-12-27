@@ -1,5 +1,8 @@
 ﻿using BrowserApplication.Forms.BookmarkFunctions;
 using System;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -34,9 +37,11 @@ namespace BrowserApplication.Forms
         }
 
 
-        public void ClearData() {
-            dataGridView.Rows.Clear();
-            dataGridView.Refresh();
+        public void updateDataGridView(string link, string name)
+        {
+            var i = this.dataGridView.Rows.Add();
+            dataGridView.Rows[i].Cells[0].Value = link;
+            dataGridView.Rows[i].Cells[1].Value = name;
         }
         public void DataSetup()
         {
@@ -62,6 +67,7 @@ namespace BrowserApplication.Forms
 
             dataGridView.Columns.Add(linkCol);
             dataGridView.Columns.Add(nameCol);
+
 
             foreach (string item in Properties.Settings.Default.BookmarksList)
             {
@@ -124,11 +130,6 @@ namespace BrowserApplication.Forms
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.BookmarksList.Clear();
         }
     }
 }

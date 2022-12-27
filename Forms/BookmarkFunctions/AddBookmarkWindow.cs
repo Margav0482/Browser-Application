@@ -37,14 +37,16 @@ namespace BrowserApplication.Forms.BookmarkFunctions
 
         }
 
+
         private void saveButon_Click(object sender, EventArgs e)
         {
             linkinput = linkTextBox.Text;
             nameinput = nameTextbox.Text;
             Uri uriResult;
             bool isUri = Uri.TryCreate(linkinput, UriKind.Absolute, out uriResult)
-                && uriResult.Scheme == Uri.UriSchemeHttp;
-            
+                && uriResult.Scheme == Uri.UriSchemeHttp && Uri.IsWellFormedUriString(linkinput, UriKind.Absolute);
+
+
             if ((isUri) && (linkinput != null && linkinput.Length > 0) && (nameinput != null && nameinput.Length > 0))
             {
                 Properties.Settings.Default.BookmarksList.Add(linkinput + "," + nameinput);
@@ -52,7 +54,11 @@ namespace BrowserApplication.Forms.BookmarkFunctions
 
 
                 var instance = Application.OpenForms.OfType<MainWindow>().Single();
-                instance.updatebookmarkstab(linkinput);
+                instance.updatebookmarkstab(nameinput);
+
+                var datagridviewinstance = Application.OpenForms.OfType<BookmarkWindow>().Single();
+                datagridviewinstance.updateDataGridView(linkinput, nameinput);
+
                 this.Close();
                 MessageBox.Show("Added!");
             }

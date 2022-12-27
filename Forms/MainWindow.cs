@@ -99,7 +99,15 @@ namespace BrowserApplication
                 foreach (string item in Properties.Settings.Default.BookmarksList)
                 {
                     var linkname = item.Split(',')[0].ToString();
-                    favouritesToolStripMenuItem.DropDownItems.Add(linkname);
+                    var name = item.Split(',')[1].ToString();
+                    if(name != "null")
+                    {
+                        favouritesToolStripMenuItem.DropDownItems.Add(name);
+                    }
+                    else
+                    {
+                        favouritesToolStripMenuItem.DropDownItems.Add(linkname);
+                    }
                 }
             }
             changeHomePageURLTextBox.Text = Properties.Settings.Default.HomePageURL;
@@ -153,6 +161,16 @@ namespace BrowserApplication
         private async void dropDown_Click(object sender, ToolStripItemClickedEventArgs e)
         {
             var itemSelected = e.ClickedItem.Text;
+            foreach (string item in Properties.Settings.Default.BookmarksList)
+            {
+                var linkname = item.Split(',')[0].ToString();
+                var name = item.Split(',')[1].ToString();
+                if(itemSelected == name)
+                {
+                    itemSelected = linkname;
+                }
+            }
+
             if (itemSelected != null && !webClient.IsBusy)
             {
                 inputUrlBox.Text = itemSelected;
@@ -175,6 +193,7 @@ namespace BrowserApplication
                         Properties.Settings.Default.Save();
                         foreach (var bookmark in Properties.Settings.Default.BookmarksList) {
                             var link = bookmark.Split(',')[0].ToString();
+                            var name = bookmark.Split(',')[1].ToString();
                             favouritesToolStripMenuItem.DropDownItems.Add(link);
                         }
                     }
